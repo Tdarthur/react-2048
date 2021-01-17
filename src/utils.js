@@ -15,9 +15,10 @@ const shift = (board, rowStart, rowEnd, unitStep) => {
 				board[xDest - unitStep] === board[at]
 			) {
 				combinedLast = true;
-				points += board[at];
+				points += board[at] * 2;
 				board[xDest - unitStep] = board[at] * 2;
 				board[at] = 0;
+				gap++;
 			} else if (gap > 0) {
 				if (combinedLast) combinedLast = false;
 				board[xDest] = board[at];
@@ -79,6 +80,7 @@ const shiftDown = (board, boardWidth) => {
 
 const utils = {
 	initializeArray: (length, fill = 0) => {
+		console.log(length);
 		const array = [];
 		array.length = length;
 		array.fill(fill, 0, length + 1);

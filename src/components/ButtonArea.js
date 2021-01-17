@@ -9,7 +9,7 @@ const DIRECTIONS = [
 	ShiftDirection.down,
 ];
 
-const ButtonPanel = (props) => {
+const ButtonArea = (props) => {
 	return (
 		<div className='button-panel'>
 			{DIRECTIONS.map((direction) => (
@@ -18,12 +18,10 @@ const ButtonPanel = (props) => {
 					className='button'
 					id={direction.toLowerCase()}
 					onClick={() => props.shiftBoard(direction)}
-				>
-					{direction}
-				</button>
+				></button>
 			))}
 		</div>
 	);
 };
 
-export default ButtonPanel;
+export default ButtonArea;

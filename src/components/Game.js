@@ -1,44 +1,35 @@
 import React, { useState } from 'react';
 
-import Scoreboard from './Scoreboard';
-import Gameboard from './Gameboard';
-import ButtonPanel from './ButtonPanel';
+import ScorePanel from './ScorePanel';
+import GamePanel from './GamePanel';
+import SettingsPanel from './SettingsPanel';
 import utils from '../utils';
 import ShiftDirection from '../ShiftDirection';
 
 const Game = (props) => {
-	const { score, board, shiftBoard } = UseGameState(props);
+	const { score, highScore, board, shiftBoard } = UseGameState(props);
 
 	return (
 		<>
-			<Scoreboard score={score} />
-			<div className='game-panel'>
-				<div className='game-board'>
-					<Gameboard board={board} playing={props.playing} />
-					{!props.playing ? (
-						<div class='game-over'>
-							<label>Game Over</label>
-							<button
-								id='restart_game'
-								class='button'
-								onClick={props.restart}
-							>
-								New Game
-							</button>
-						</div>
-					) : (
-						<></>
-					)}
-				</div>
-				<ButtonPanel shiftBoard={shiftBoard} />
-			</div>
+			<ScorePanel score={score} highScore={highScore} />
+			<GamePanel
+				board={board}
+				playing={props.playing}
+				restart={props.restart}
+				shiftBoard={shiftBoard}
+			/>
+			<SettingsPanel
+				settings={props.settings}
+				updateSettings={props.updateSettings}
+			/>
 		</>
 	);
 };
 
 const UseGameState = (props) => {
 	const [score, setScore] = useState(0);
-	const boardSize = Math.pow(props.boardWidth, 2);
+	const [highScore, setHighScore] = useState(0);
+	const boardSize = Math.pow(props.settings.boardWidth.value, 2);
 	const [board, setBoard] = useState(
 		utils.spawnCell(utils.initializeArray(boardSize, 0))
 	);
@@ -49,6 +40,9 @@ const UseGameState = (props) => {
 			const newBoard = utils.spawnCell(shiftedBoard);
 			setBoard(newBoard);
 			setScore(score + points);
+			if (score + points > highScore) {
+				setHighScore(score + points);
+			}
 			if (!utils.validateBoard(newBoard)) {
 				props.end();
 			}
@@ -81,7 +75,7 @@ const UseGameState = (props) => {
 		}
 	};
 
-	return { score, board, shiftBoard };
+	return { score, highScore, board, shiftBoard };
 };
 
 export default Game;

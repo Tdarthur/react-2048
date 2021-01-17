@@ -3,11 +3,20 @@ import '../styles/index.css';
 
 import Game from './Game';
 
-const BOARD_WIDTH = 4;
+const DEFAULT_SETTINGS = {
+	boardWidth: {
+		value: 4,
+		type: 'number',
+		min: 3,
+		max: 10,
+		displayName: 'Board Width',
+	},
+};
 
 const App = () => {
 	const [playingGame, setPlayingGame] = useState(true);
 	const [gameKey, setGameKey] = useState(0);
+	const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
 	const restartGame = () => {
 		setPlayingGame(true);
@@ -18,6 +27,13 @@ const App = () => {
 		setPlayingGame(false);
 	};
 
+	const updateSettings = (newSettings) => {
+		setSettings(newSettings);
+		if (newSettings.boardWidth !== settings.boardWidth) {
+			restartGame();
+		}
+	};
+
 	return (
 		<>
 			<Game
@@ -25,7 +41,8 @@ const App = () => {
 				playing={playingGame}
 				end={endGame}
 				restart={restartGame}
-				boardWidth={BOARD_WIDTH}
+				settings={settings}
+				updateSettings={updateSettings}
 			/>
 		</>
 	);
