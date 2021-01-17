@@ -1,14 +1,15 @@
-# Game Description
+# 2048 React
 
-Remake of the popular '2048' game using ReactJS.
+## Description
 
-Controls: ### `yeet`
+This is a remake of the once-popular [**_2048_**](https://play2048.co/) game, created using React.
 
-# Getting Started with Create React App
+## Controls:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-   Shift Board: `wasd / arrow keys`
+-   Restart Game: `r`
 
-## Available Scripts
+## Starting the Application
 
 In the project directory, you can run:
 
