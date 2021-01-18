@@ -1,3 +1,57 @@
 .settings-panel {
-    
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.settings-panel h1 {
+	flex: 0 0 100%;
+	font-weight: bold;
+	font-family: 'clear-sans';
+	font-size: 40px;
+	color: rgb(116, 111, 106);
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	margin: 0 auto 10px auto;
+}
+
+.setting {
+	display: grid;
+	grid-template-columns: calc(50% - 1px) 2px calc(50% - 1px);
+	grid-template-rows: 100%;
+	width: 100%;
+}
+
+.setting label,
+.setting input {
+	margin: 10px;
+	font-family: 'clear-sans';
+	align-self: center;
+}
+
+.setting #divider {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(116, 111, 106);
+}
+
+.setting label {
+	grid-column: 1 / 2;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgb(116, 111, 106);
+	justify-self: right;
+	border: rgb(116, 111, 106);
+}
+
+.setting input {
+	grid-column: 3 / 4;
+	justify-self: left;
+}
+
+#save_settings {
+	margin: 10px auto 0 auto;
+}
+
+#save_settings:disabled {
+	filter: grayscale();
 }

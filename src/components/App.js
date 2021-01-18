@@ -11,6 +11,16 @@ const DEFAULT_SETTINGS = {
 		max: 10,
 		displayName: 'Board Width',
 	},
+	displayArrows: {
+		value: false,
+		type: 'checkbox',
+		displayName: 'Display Arrows',
+	},
+	doNothing: {
+		value: false,
+		type: 'checkbox',
+		displayName: 'Do Nothing',
+	},
 };
 
 const App = () => {
@@ -29,7 +39,7 @@ const App = () => {
 
 	const updateSettings = (newSettings) => {
 		setSettings(newSettings);
-		if (newSettings.boardWidth !== settings.boardWidth) {
+		if (newSettings.boardWidth.value !== settings.boardWidth.value) {
 			restartGame();
 		}
 	};

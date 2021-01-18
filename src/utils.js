@@ -80,7 +80,6 @@ const shiftDown = (board, boardWidth) => {
 
 const utils = {
 	initializeArray: (length, fill = 0) => {
-		console.log(length);
 		const array = [];
 		array.length = length;
 		array.fill(fill, 0, length + 1);

@@ -21,7 +21,11 @@ const GamePanel = (props) => (
 				<></>
 			)}
 		</div>
-		<ButtonArea shiftBoard={props.shiftBoard} />
+		{props.settings.displayArrows.value ? (
+			<ButtonArea shiftBoard={props.shiftBoard} />
+		) : (
+			<></>
+		)}
 	</div>
 );
 

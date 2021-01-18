@@ -17,6 +17,7 @@ const Game = (props) => {
 				playing={props.playing}
 				restart={props.restart}
 				shiftBoard={shiftBoard}
+				settings={props.settings}
 			/>
 			<SettingsPanel
 				settings={props.settings}
@@ -28,7 +29,9 @@ const Game = (props) => {
 
 const UseGameState = (props) => {
 	const [score, setScore] = useState(0);
-	const [highScore, setHighScore] = useState(0);
+	const [highScore, setHighScore] = useState(
+		localStorage.getItem('highscore')
+	);
 	const boardSize = Math.pow(props.settings.boardWidth.value, 2);
 	const [board, setBoard] = useState(
 		utils.spawnCell(utils.initializeArray(boardSize, 0))
@@ -42,6 +45,7 @@ const UseGameState = (props) => {
 			setScore(score + points);
 			if (score + points > highScore) {
 				setHighScore(score + points);
+				localStorage.setItem('highscore', score + points);
 			}
 			if (!utils.validateBoard(newBoard)) {
 				props.end();

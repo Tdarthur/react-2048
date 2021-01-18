@@ -48,7 +48,6 @@
 
 .game-over > button {
 	align-self: baseline;
-	padding: 10px;
 	opacity: 0.8;
 }
 
@@ -156,6 +155,7 @@
 }
 
 .button {
+	padding: 10px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 24px;
